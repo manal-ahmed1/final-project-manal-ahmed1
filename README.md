@@ -10,6 +10,47 @@ The “Where’s Waldo?” picture game is a task where the goal is to locate th
 Data pulled from Aleksey Bilogur's "Where's Waldo" on Kaggle:
 https://www.kaggle.com/datasets/residentmario/wheres-waldo/data
 
+## How to Run the Code (Dependencies + Setup)
+
+This project is implemented in **Python 3** using **TensorFlow + Keras** for the CNN, with supporting libraries for data handling and visualization.
+
+#### 1) Environment setup
+1. Create & activate a virtual environment (recommended):
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate     # macOS
+   ```
+
+2. Install required dependencies:
+   ```bash
+   pip install tensorflow matplotlib numpy pandas pillow
+   ```
+
+#### 2) Dataset layout
+The notebook expects the dataset to be organized like this:
+```
+data/
+  train/
+    waldo/       # positive examples (contains Waldo)
+    nowaldo/     # negative examples (no Waldo)
+  test/          # unlabeled images to evaluate generalization
+```
+
+#### 3) Running the notebook
+1. Start Jupyter:
+   ```bash
+   jupyter notebook neural_network.ipynb
+   ```
+2. Execute cells **top-to-bottom** (especially the data loading sections) so the dataset and model are initialized correctly.
+
+#### 4) Notes / Troubleshooting
+- **Images are resized to 224×224
+- Do not double normalize
+- For MobileNetV2:
+  - use preprocess_input
+  - do NOT divide by 255 again
+  - Since  ImageNet weights failed to download (SSL issue), I used weights=None
+
 ## Dataset Description
 
 **Source:** "Where's Waldo" dataset from Kaggle (Aleksey Bilogur)
